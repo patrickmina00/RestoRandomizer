@@ -1,5 +1,5 @@
 package com.example.owner.restorandomizer;
-
+import java.util.*;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,7 +9,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    private List<String> restos = new ArrayList<String>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        restos.add("dominos");
+        restos.add("pizzahut");
+        restos.add("nandos");
+        restos.add("burgerking");
+        restos.add("mcdonalds");
+        restos.add("default");
+
+
     }
 
     @Override

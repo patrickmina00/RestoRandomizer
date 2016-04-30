@@ -50,6 +50,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/mainImage"
         android:layout_above="@id/addbinButton"
         android:layout_below = "@id/header"
         android:layout_width="match_parent"
