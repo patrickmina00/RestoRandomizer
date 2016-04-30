@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         restos.add("kfc");
         restos.add("subway");
         restos.add("wendys");
+        restos.add("heyramen");
+
 
         getLin().setVisibility(View.GONE);
         animUp = AnimationUtils.loadAnimation(this, R.anim.moveright);
@@ -179,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.wendys_logo, null);
 
             default:
+                Toast.makeText(this, currentResto, Toast.LENGTH_SHORT).show();
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.questionmark, null);
         }
     }
