@@ -66,6 +66,7 @@
         android:orientation="vertical"
         android:weightSum="1">
 
+<<<<<<< HEAD
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,6 +150,15 @@
             android:text="Wendys"
             android:id="@+id/wcheckBox"
             android:onClick="onCheckboxClicked" />
+=======
+        <android.support.v7.widget.RecyclerView
+            android:id = "@+id/my_recycler_view"
+            android:scrollbars = "vertical"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            />
+
+>>>>>>> master
     </LinearLayout>
 
     <ImageView
