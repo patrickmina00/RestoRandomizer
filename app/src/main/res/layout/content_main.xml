@@ -60,66 +60,50 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="false"
-        android:background="#c0bcbc"
+        android:background="#e100ccff"
         android:content="@+id/content"
         android:gravity="top|left|bottom|center_horizontal"
         android:orientation="vertical"
         android:weightSum="1">
 
         <CheckBox
-            android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="McDonalds"
             android:id="@+id/mcheckBox"
-            android:onClick="onCheckboxClicked"/>
-=======
-            android:checked="false"
-            android:text="McDonalds" />
->>>>>>> master
+            android:onClick="onCheckboxClicked"
+            android:checked="true" />
+
 
         <CheckBox
-            android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="Nandos"
             android:id="@+id/ncheckBox"
-            android:onClick="onCheckboxClicked"/>
-=======
-            android:text="New CheckBox" />
->>>>>>> master
+            android:onClick="onCheckboxClicked"
+            android:checked="true"/>
+
 
         <CheckBox
-            android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="BurgerKing"
             android:id="@+id/bcheckBox"
-            android:onClick="onCheckboxClicked" />
-=======
-            android:text="New CheckBox" />
->>>>>>> master
+            android:onClick="onCheckboxClicked"
+            android:checked="true"/>
+
 
         <CheckBox
-            android:id="@+id/checkBox4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="KFC"
             android:id="@+id/kcheckBox"
-            android:onClick="onCheckboxClicked"/>
-=======
-            android:text="New CheckBox" />
->>>>>>> master
+            android:onClick="onCheckboxClicked"
+            android:checked="true"/>
 
         <CheckBox
-            android:id="@+id/checkBox5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="BurgerFuel"
             android:id="@+id/bfcheckBox"
             android:onClick="onCheckboxClicked" />
@@ -165,9 +149,6 @@
             android:text="Wendys"
             android:id="@+id/wcheckBox"
             android:onClick="onCheckboxClicked" />
-=======
-            android:text="New CheckBox" />
->>>>>>> master
     </LinearLayout>
 
     <ImageView

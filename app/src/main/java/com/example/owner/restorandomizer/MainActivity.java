@@ -36,7 +36,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<String> restos = new ArrayList<String>();      /* List of all the available restos */
     private List<String> selectedRestos = new ArrayList<>();    /* List of selected restos from the user */
-
     private String currentResto;
     private final Context context = this;
 
@@ -54,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        LinearLayout slider = (LinearLayout) findViewById(R.id.slider);
+        slider.bringToFront();
 
         //Adding Buttons in
         Button randomizeButton = getRandomizeButton();
@@ -131,15 +132,43 @@ public class MainActivity extends AppCompatActivity {
             switch(view.getId()){
                 case R.id.mcheckBox:
                     if(checked) selectedRestos.add("mcdonalds");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("mcdonalds")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
                     break;
                 case R.id.ncheckBox:
                     if(checked) selectedRestos.add("nandos");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("nandos")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
                     break;
                 case R.id.bcheckBox:
                     if(checked) selectedRestos.add("burgerking");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("burgerking")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
                     break;
                 case R.id.kcheckBox:
                     if(checked) selectedRestos.add("kfc");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("kfc")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
                     break;
                 case R.id.bfcheckBox:
                     if(checked) selectedRestos.add("burgerfuel");
