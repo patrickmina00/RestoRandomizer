@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-<<<<<<< HEAD
+
         LinearLayout slider = (LinearLayout) findViewById(R.id.slider);
         slider.bringToFront();
-=======
+
         //Adding RecyclerView
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(this.restos);
         mRecyclerView.setAdapter(mAdapter);
 
->>>>>>> master
 
         //Adding Buttons in
         Button randomizeButton = getRandomizeButton();
