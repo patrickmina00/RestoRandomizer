@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,6 +25,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<String> restos = new ArrayList<String>();
     private String currentResto;
+
+    /*****Animation for Sliding Menu*******/
+    private Animation animUp;
+    private Animation animDown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
         restos.add("kfc");
         restos.add("subway");
         restos.add("wendys");
-    }
 
+        getLin().setVisibility(View.GONE);
+        animUp = AnimationUtils.loadAnimation(this, R.anim.moveright);
+        animDown = AnimationUtils.loadAnimation(this, R.anim.moveleft);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -171,6 +183,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    float startX = 0;
+    boolean shown = false;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN : {
+                startX = event.getX();
+                break ;
+            }
+            case MotionEvent.ACTION_UP: {
+                float endX = event.getX();
+
+                if((Math.abs(endX-startX)) < 10){break;} // if the swipe is too small just ignore
+
+                if (endX > startX && !shown) {
+                    System.out.println("Move UP");
+                    getLin().setVisibility(View.VISIBLE);
+                    getLin().startAnimation(animUp);
+                    shown=true;
+                }
+                else if (endX < startX && shown){
+
+                    getLin().startAnimation(animDown);
+                    getLin().setVisibility(View.GONE);
+                    shown = false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+    public LinearLayout getLin(){
+        return (LinearLayout) findViewById(R.id.slider);
+    }
 
     /**
      * Getters for the app buttons.
