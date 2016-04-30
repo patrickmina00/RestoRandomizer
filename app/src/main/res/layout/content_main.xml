@@ -9,29 +9,28 @@
     tools:showIn="@layout/activity_main">
 
     <ImageView
-        android:id = "@+id/header"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal = "true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/resto_randomizer"
         android:paddingLeft="18dp"
         android:paddingRight="18dp"
-        android:textSize="24sp"
-        android:background = "@drawable/resto_randomizer" />
+        android:textSize="24sp" />
 
     <Button
-        android:id = "@+id/randomize"
+        android:id="@+id/randomize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textSize="36sp"
         android:text="Randomize"
-        />
+        android:textSize="36sp" />
 
     <RelativeLayout
-        android:id = "@+id/addbinButton"
+        android:id="@+id/addbinButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above = "@id/randomize"
+        android:layout_above="@id/randomize"
         android:orientation="horizontal">
 
         <ImageButton
@@ -39,22 +38,22 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
-            android:background = "@drawable/add_logo" />
+            android:background="@drawable/add_logo" />
 
         <ImageButton
             android:id="@+id/delete"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:background = "@drawable/bin_logo"/>
+            android:background="@drawable/bin_logo" />
     </RelativeLayout>
 
     <ImageView
-        android:id = "@+id/mainImage"
-        android:layout_above="@id/addbinButton"
-        android:layout_below = "@id/header"
+        android:id="@+id/mainImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/nandos_logo"/>
+        android:layout_above="@id/addbinButton"
+        android:layout_below="@id/header"
+        android:src="@drawable/questionmark" />
 
 </RelativeLayout>
