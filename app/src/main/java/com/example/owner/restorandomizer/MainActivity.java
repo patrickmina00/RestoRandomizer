@@ -18,7 +18,11 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+
+import android.widget.CheckBox;
+
 import android.widget.EditText;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +34,8 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private List<String> restos = new ArrayList<String>();
+    private List<String> restos = new ArrayList<String>();      /* List of all the available restos */
+    private List<String> selectedRestos = new ArrayList<>();    /* List of selected restos from the user */
     private String currentResto;
     private final Context context = this;
 
@@ -48,13 +53,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        LinearLayout slider = (LinearLayout) findViewById(R.id.slider);
+        slider.bringToFront();
 
         //Adding Buttons in
         Button randomizeButton = getRandomizeButton();
         ImageButton addButton = getAddButton();
         ImageButton deleteButton = getDeleteButton();
 
-        //Assigning listeners to buttons.
+        //Assigning listeners to buttons and checkbox.
         randomizeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MainActivity.this.randomize();
@@ -120,6 +127,74 @@ public class MainActivity extends AppCompatActivity {
         animDown = AnimationUtils.loadAnimation(this, R.anim.moveleft);
     }
 
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+            switch(view.getId()){
+                case R.id.mcheckBox:
+                    if(checked) selectedRestos.add("mcdonalds");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("mcdonalds")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
+                    break;
+                case R.id.ncheckBox:
+                    if(checked) selectedRestos.add("nandos");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("nandos")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
+                    break;
+                case R.id.bcheckBox:
+                    if(checked) selectedRestos.add("burgerking");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("burgerking")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
+                    break;
+                case R.id.kcheckBox:
+                    if(checked) selectedRestos.add("kfc");
+                    else{
+                        for(String l : this.selectedRestos){
+                            if(l.equals("kfc")){
+                                this.selectedRestos.remove(l);
+                            }
+                        }
+                    }
+                    break;
+                case R.id.bfcheckBox:
+                    if(checked) selectedRestos.add("burgerfuel");
+                    break;
+                case R.id.cpcheckBox:
+                    if(checked) selectedRestos.add("chefspalette");
+                    break;
+                case R.id.dcheckBox:
+                    if(checked) selectedRestos.add("dominos");
+                    break;
+                case R.id.hcheckBox:
+                    if(checked) selectedRestos.add("hells");
+                    break;
+                case R.id.phcheckBox:
+                    if(checked) selectedRestos.add("pizzahut");
+                    break;
+                case R.id.scheckBox:
+                    if(checked) selectedRestos.add("subway");
+                    break;
+                case R.id.wcheckBox:
+                    if(checked) selectedRestos.add("wendys");
+                    break;
+            }
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -148,8 +223,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void randomize() {
         ImageView mainImgView = (ImageView) findViewById(R.id.mainImage);
-        int i = (int) (Math.random() * (restos.size() - .01));
-        this.currentResto = restos.get(i);
+        int i = (int) (Math.random() * (selectedRestos.size() - .01));
+        //this.currentResto = restos.get(i);
+        this.currentResto = selectedRestos.get(i);
         mainImgView.setImageDrawable(fetchImage(this.currentResto));
     }
 
@@ -175,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Resto has already been removed.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     /**
      * Uses a switch to return the image for a given restaurant string from android resources.
@@ -266,7 +341,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Getters for the app buttons.
-     *
      * @return
      */
     public Button getRandomizeButton() {
@@ -280,4 +354,5 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton getDeleteButton() {
         return (ImageButton) findViewById(R.id.delete);
     }
+
 }

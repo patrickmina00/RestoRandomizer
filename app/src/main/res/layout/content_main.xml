@@ -60,42 +60,95 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="false"
-        android:background="#c0bcbc"
+        android:background="#e100ccff"
         android:content="@+id/content"
         android:gravity="top|left|bottom|center_horizontal"
         android:orientation="vertical"
         android:weightSum="1">
 
         <CheckBox
-            android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="McDonalds" />
+            android:text="McDonalds"
+            android:id="@+id/mcheckBox"
+            android:onClick="onCheckboxClicked"
+            android:checked="true" />
+
 
         <CheckBox
-            android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox" />
+            android:text="Nandos"
+            android:id="@+id/ncheckBox"
+            android:onClick="onCheckboxClicked"
+            android:checked="true"/>
+
 
         <CheckBox
-            android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox" />
+            android:text="BurgerKing"
+            android:id="@+id/bcheckBox"
+            android:onClick="onCheckboxClicked"
+            android:checked="true"/>
+
 
         <CheckBox
-            android:id="@+id/checkBox4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox" />
+            android:text="KFC"
+            android:id="@+id/kcheckBox"
+            android:onClick="onCheckboxClicked"
+            android:checked="true"/>
 
         <CheckBox
-            android:id="@+id/checkBox5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox" />
+            android:text="BurgerFuel"
+            android:id="@+id/bfcheckBox"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chefs Palette"
+            android:id="@+id/cpcheckBox"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dominos"
+            android:id="@+id/dcheckBox"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hells Pizza"
+            android:id="@+id/hcheckBox"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pizza Hut"
+            android:id="@+id/phcheckBox"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subway"
+            android:id="@+id/scheckBox"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wendys"
+            android:id="@+id/wcheckBox"
+            android:onClick="onCheckboxClicked" />
     </LinearLayout>
 
     <ImageView
