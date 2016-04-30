@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/add"
-            android:layout_width="36dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="+" />
+            android:src = "@drawable/add_logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,23 +28,25 @@
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
             android:textSize="24sp"
-            android:text="Food_Randomizer" />
+            android:text="food_randomizer" />
 
-        <Button
+        <ImageButton
             android:id="@+id/delete"
-            android:layout_width="36dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="Trash"/>
+            android:src = "@drawable/trashbin_logo"/>
 
     </LinearLayout>
 
 
-    <Button
+    <ImageButton
         android:id = "@+id/randomize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="RANDOMIZE"/>
+        android:src = "@drawable/randomize"/>
+
+
 
 </RelativeLayout>
