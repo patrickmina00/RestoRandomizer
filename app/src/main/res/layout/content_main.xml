@@ -8,45 +8,43 @@
     tools:context="com.example.owner.restorandomizer.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal = "true"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textSize="24sp"
+        android:background = "@drawable/resto_randomizer" />
 
-        <ImageButton
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src = "@drawable/add_logo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal = "true"
-            android:layout_weight="3"
-            android:paddingLeft="18dp"
-            android:paddingRight="18dp"
-            android:textSize="24sp"
-            android:text="food_randomizer" />
-
-        <ImageButton
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:src = "@drawable/trashbin_logo"/>
-
-    </LinearLayout>
-
-
-    <ImageButton
+    <Button
         android:id = "@+id/randomize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:src = "@drawable/randomize"/>
+        android:textSize="36sp"
+        android:text="Randomize"
+        />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above = "@id/randomize"
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/add"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:background = "@drawable/add_logo" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:background = "@drawable/trashbin_logo"/>
+    </RelativeLayout>
 
 </RelativeLayout>
