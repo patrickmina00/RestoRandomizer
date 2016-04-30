@@ -1,13 +1,8 @@
 package com.example.owner.restorandomizer;
 
-import java.util.*;
-
 
 import android.graphics.drawable.Drawable;
-
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,9 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private List<String> restos = new ArrayList<String>();
@@ -36,16 +29,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        restos.add("dominos");
 
         //Adding Buttons in
         Button randomizeButton = getRandomizeButton();
@@ -73,12 +56,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Adding our default restaurants for app.
-        //restos.add("dominos");
+        restos.add("dominos");
         restos.add("pizzahut");
         restos.add("nandos");
         restos.add("burgerking");
         restos.add("mcdonalds");
         restos.add("default");
+        restos.add("burgerfuel");
+        restos.add("chefspalette");
+        restos.add("hells");
+        restos.add("kfc");
+        restos.add("subway");
+        restos.add("wendys");
     }
 
 
@@ -110,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void randomize() {
         ImageView mainImgView = (ImageView) findViewById(R.id.mainImage);
-        int i = new Random().nextInt(restos.size());
+        int i = (int) (Math.random() * (restos.size() - .01));
         this.currentResto = restos.get(i);
-        mainImgView.setImageDrawable(fetchImage(restos.get(i)));
+        mainImgView.setImageDrawable(fetchImage(this.currentResto));
     }
 
 
@@ -120,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Deletes the current resto displayed on the app from the resto list.
+     * The resto deleted will never be selected ever again.
+     */
     public void deleteResto() {
         if (this.restos.contains(this.currentResto)) {
             this.restos.remove(this.currentResto);
@@ -154,6 +147,24 @@ public class MainActivity extends AppCompatActivity {
 
             case "mcdonalds":
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.mcdonalds_logo, null);
+
+            case "burgerfuel":
+                return ResourcesCompat.getDrawable(getResources(), R.drawable.burgerfuel_logo, null);
+
+            case "chefspalette":
+                return ResourcesCompat.getDrawable(getResources(), R.drawable.chefspalette_logo, null);
+
+            case "hells":
+                return ResourcesCompat.getDrawable(getResources(), R.drawable.hells_logo, null);
+
+            case "kfc":
+                return ResourcesCompat.getDrawable(getResources(), R.drawable.kfc_logo, null);
+
+            case "subway":
+                return ResourcesCompat.getDrawable(getResources(), R.drawable.subway_logo, null);
+
+            case "wendys":
+                return ResourcesCompat.getDrawable(getResources(), R.drawable.wendys_logo, null);
 
             default:
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.questionmark, null);
