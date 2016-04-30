@@ -1,6 +1,10 @@
 package com.example.owner.restorandomizer;
 
+import java.util.*;
+
+
 import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +22,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private List<String> restos = new ArrayList<String>();
@@ -38,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        restos.add("dominos");
 
         //Adding Buttons in
         Button randomizeButton = getRandomizeButton();
