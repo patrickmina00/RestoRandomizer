@@ -50,11 +50,15 @@
     </RelativeLayout>
 
     <ImageView
+<<<<<<< HEAD
         android:id="@+id/mainImage"
+=======
+        android:id = "@+id/mainImage"
+>>>>>>> master
         android:layout_above="@id/addbinButton"
         android:layout_below = "@id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/nandos_logo"/>
+        android:src="@drawable/nandos_logo"/>
 
 </RelativeLayout>
