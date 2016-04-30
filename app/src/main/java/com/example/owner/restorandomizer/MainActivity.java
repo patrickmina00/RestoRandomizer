@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         restos.add("kfc");
         restos.add("subway");
         restos.add("wendys");
+        restos.add("heyramen");
     }
 
 
@@ -167,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.wendys_logo, null);
 
             default:
+                Toast.makeText(this, currentResto, Toast.LENGTH_SHORT).show();
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.questionmark, null);
         }
     }
