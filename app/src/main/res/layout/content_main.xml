@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_main">
 
     <ImageView
+        android:id = "@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal = "true"
@@ -27,6 +28,7 @@
         />
 
     <RelativeLayout
+        android:id = "@+id/addbinButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above = "@id/randomize"
@@ -34,17 +36,24 @@
 
         <ImageButton
             android:id="@+id/add"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:background = "@drawable/add_logo" />
 
         <ImageButton
             android:id="@+id/delete"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:background = "@drawable/bin_logo"/>
     </RelativeLayout>
+
+    <ImageView
+        android:layout_above="@id/addbinButton"
+        android:layout_below = "@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/nandos_logo"/>
 
 </RelativeLayout>
