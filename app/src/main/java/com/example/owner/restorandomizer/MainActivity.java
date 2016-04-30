@@ -1,11 +1,18 @@
 package com.example.owner.restorandomizer;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -13,10 +20,13 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +34,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<String> restos = new ArrayList<String>();
     private String currentResto;
+    private final Context context = this;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
-    /*****Animation for Sliding Menu*******/
+
+    /*****
+     * Animation for Sliding Menu
+     *******/
     private Animation animUp;
     private Animation animDown;
 
@@ -36,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Adding RecyclerView
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new MyAdapter(this.restos);
+        mRecyclerView.setAdapter(mAdapter);
 
 
         //Adding Buttons in
@@ -51,8 +76,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         addButton.setOnClickListener(new View.OnClickListener() {
+            //Setting up prompts for user to input new Resto name
+            //http://inducesmile.com/android-snippets/android-snippet-prompt-user-input-with-an-alertdialog/
             public void onClick(View v) {
-                MainActivity.this.addResto();
+                AlertDialog.Builder inputAlert = new AlertDialog.Builder(context);
+                inputAlert.setTitle("RestoRandomizer");
+                inputAlert.setMessage("Input Resto Name");
+                final EditText editText = new EditText(context);
+                inputAlert.setView(editText);
+
+                inputAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (editText != null) {
+                            String userInput = editText.getText().toString();
+                            MainActivity.this.addResto(userInput);
+                        } else {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+                inputAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = inputAlert.create();
+                alertDialog.show();
             }
         });
 
@@ -61,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.deleteResto();
             }
         });
-
 
         //Adding our default restaurants for app.
         restos.add("dominos");
@@ -77,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         restos.add("subway");
         restos.add("wendys");
         restos.add("heyramen");
-
 
         getLin().setVisibility(View.GONE);
         animUp = AnimationUtils.loadAnimation(this, R.anim.moveright);
@@ -118,8 +168,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void addResto() {
-
+    /**
+     * Adds a Resto name by prompting a user for a string input. The resto name is added to the
+     * resto list and towards the randomizer choices.
+     */
+    public void addResto(String input) {
+        Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
+        restos.add(input);
     }
 
     /**
@@ -187,25 +242,27 @@ public class MainActivity extends AppCompatActivity {
 
     float startX = 0;
     boolean shown = false;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN : {
+            case MotionEvent.ACTION_DOWN: {
                 startX = event.getX();
-                break ;
+                break;
             }
             case MotionEvent.ACTION_UP: {
                 float endX = event.getX();
 
-                if((Math.abs(endX-startX)) < 10){break;} // if the swipe is too small just ignore
+                if ((Math.abs(endX - startX)) < 10) {
+                    break;
+                } // if the swipe is too small just ignore
 
                 if (endX > startX && !shown) {
                     System.out.println("Move UP");
                     getLin().setVisibility(View.VISIBLE);
                     getLin().startAnimation(animUp);
-                    shown=true;
-                }
-                else if (endX < startX && shown){
+                    shown = true;
+                } else if (endX < startX && shown) {
 
                     getLin().startAnimation(animDown);
                     getLin().setVisibility(View.GONE);
@@ -217,8 +274,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public LinearLayout getLin(){
+    public LinearLayout getLin() {
         return (LinearLayout) findViewById(R.id.slider);
+    }
+
+    public List<String> getRestos(){
+        return this.restos;
     }
 
     /**
