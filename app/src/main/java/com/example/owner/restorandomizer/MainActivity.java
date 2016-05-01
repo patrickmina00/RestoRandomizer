@@ -11,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -28,17 +26,24 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 
+<<<<<<< HEAD
 public class MainActivity extends AppCompatActivity {
     private List<String> restos = new ArrayList<String>();      /* List of all the available restos */
     private List<String> selectedRestos = new ArrayList<>();    /* List of selected restos from the user */
     private String currentResto;
+=======
+public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSelectedListner {
+    private List<Restos> restos = new ArrayList<Restos>();
+    //  private List<Restos> selected = new ArrayList<Restos>();
+    private Restos currentResto;
+>>>>>>> master
     private final Context context = this;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -59,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         LinearLayout slider = (LinearLayout) findViewById(R.id.slider);
         slider.bringToFront();
 
@@ -68,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyAdapter(this.restos);
+        mAdapter = new MyAdapter(this.restos, this);
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -124,19 +132,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Adding our default restaurants for app.
-        restos.add("dominos");
-        restos.add("pizzahut");
-        restos.add("nandos");
-        restos.add("burgerking");
-        restos.add("mcdonalds");
-        restos.add("default");
-        restos.add("burgerfuel");
-        restos.add("chefspalette");
-        restos.add("hells");
-        restos.add("kfc");
-        restos.add("subway");
-        restos.add("wendys");
-        restos.add("heyramen");
+        restos.add(new Restos("dominos", true));
+        restos.add(new Restos("pizzahut", true));
+        restos.add(new Restos("nandos", true));
+        restos.add(new Restos("burgerking", true));
+        restos.add(new Restos("mcdonalds", true));
+        restos.add(new Restos("default", true));
+        restos.add(new Restos("burgerfuel", true));
+        restos.add(new Restos("chefspalette", true));
+        restos.add(new Restos("hells", true));
+        restos.add(new Restos("kfc", true));
+        restos.add(new Restos("subway", true));
+        restos.add(new Restos("wendys", true));
+        restos.add(new Restos("heyramen", true));
 
         getLin().setVisibility(View.GONE);
         animUp = AnimationUtils.loadAnimation(this, R.anim.moveright);
@@ -232,17 +240,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     /**
      * Randomize Button functionality. Uses a random number generator to fetch a string on the restos
      * arraylist and calls fetchImage to get the image from the xml file.
      */
     public void randomize() {
         ImageView mainImgView = (ImageView) findViewById(R.id.mainImage);
+<<<<<<< HEAD
         int i = (int) (Math.random() * (selectedRestos.size() - .01));
         //this.currentResto = restos.get(i);
         this.currentResto = selectedRestos.get(i);
         mainImgView.setImageDrawable(fetchImage(this.currentResto));
+=======
+        int i = (int) (Math.random() * (getCheckedList().size() - .01));
+        this.currentResto = getCheckedList().get(i);
+        mainImgView.setImageDrawable(fetchImage(this.currentResto.getRestoName()));
+>>>>>>> master
     }
 
 
@@ -251,8 +264,31 @@ public class MainActivity extends AppCompatActivity {
      * resto list and towards the randomizer choices.
      */
     public void addResto(String input) {
-        Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
-        restos.add(input);
+        if (input == null || input.equals(" ") || input.equals("")) {
+            Toast.makeText(this, "Invalid Resto Name", Toast.LENGTH_SHORT).show();
+        } else if (checkDuplicates(input)) {
+            Toast.makeText(this, "Resto already exists", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
+            restos.add(new Restos(input, true));
+        }
+
+    }
+
+    /****
+     * Checks for duplicates for all inputs
+     *
+     * @param input
+     * @return
+     */
+    public boolean checkDuplicates(String input) {
+
+        for (Restos r : restos) {
+            if (r.getRestoName().toLowerCase().equals(input.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -263,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
         if (this.restos.contains(this.currentResto)) {
             this.restos.remove(this.currentResto);
             Toast.makeText(this, "Resto has been deleted.", Toast.LENGTH_SHORT).show();
+            mAdapter.notifyDataSetChanged();
         } else {
             Toast.makeText(this, "Resto has already been removed.", Toast.LENGTH_SHORT).show();
         }
@@ -312,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.wendys_logo, null);
 
             default:
-                Toast.makeText(this, currentResto, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, currentResto.getRestoName(), Toast.LENGTH_SHORT).show();
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.questionmark, null);
         }
     }
@@ -355,10 +392,6 @@ public class MainActivity extends AppCompatActivity {
         return (LinearLayout) findViewById(R.id.slider);
     }
 
-    public List<String> getRestos(){
-        return this.restos;
-    }
-
     /**
      * Getters for the app buttons.
      * @return
@@ -375,4 +408,26 @@ public class MainActivity extends AppCompatActivity {
         return (ImageButton) findViewById(R.id.delete);
     }
 
+<<<<<<< HEAD
+=======
+    public ArrayList<Restos> getCheckedList() {
+        ArrayList<Restos> temp = new ArrayList<Restos>();
+        for (Restos r : restos) {
+            if (r.getChecked()) {
+                temp.add(r);
+            }
+        }
+        return temp;
+    }
+
+    @Override
+    public void onItemSelected(Restos clicked, boolean isChecked) {
+        if (isChecked) {
+            clicked.setChecked(true);
+        }
+        if (!isChecked) {
+            clicked.setChecked(false);
+        }
+    }
+>>>>>>> master
 }
