@@ -76,6 +76,7 @@
 
     <ImageView
         android:id="@+id/mainImage"
+        android:background="@drawable/wallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/addbinButton"
