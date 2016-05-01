@@ -11,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -24,16 +22,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
-    private List<String> restos = new ArrayList<String>();
-    private String currentResto;
+public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSelectedListner {
+    private List<Restos> restos = new ArrayList<Restos>();
+//  private List<Restos> selected = new ArrayList<Restos>();
+    private Restos currentResto;
     private final Context context = this;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -54,13 +52,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        LinearLayout slider = (LinearLayout) findViewById(R.id.slider);
+        slider.bringToFront();
+
         //Adding RecyclerView
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyAdapter(this.restos);
+        mAdapter = new MyAdapter(this.restos, this);
         mRecyclerView.setAdapter(mAdapter);
+
+
 
 
         //Adding Buttons in
@@ -115,19 +118,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Adding our default restaurants for app.
-        restos.add("dominos");
-        restos.add("pizzahut");
-        restos.add("nandos");
-        restos.add("burgerking");
-        restos.add("mcdonalds");
-        restos.add("default");
-        restos.add("burgerfuel");
-        restos.add("chefspalette");
-        restos.add("hells");
-        restos.add("kfc");
-        restos.add("subway");
-        restos.add("wendys");
-        restos.add("heyramen");
+        restos.add(new Restos("dominos",true));
+        restos.add(new Restos("pizzahut",true));
+        restos.add(new Restos("nandos",true));
+        restos.add(new Restos("burgerking",true));
+        restos.add(new Restos("mcdonalds",true));
+        restos.add(new Restos("default",true));
+        restos.add(new Restos("burgerfuel",true));
+        restos.add(new Restos("chefspalette",true));
+        restos.add(new Restos("hells",true));
+        restos.add(new Restos("kfc",true));
+        restos.add(new Restos("subway",true));
+        restos.add(new Restos("wendys",true));
+        restos.add(new Restos("heyramen",true));
 
         getLin().setVisibility(View.GONE);
         animUp = AnimationUtils.loadAnimation(this, R.anim.moveright);
@@ -155,16 +158,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     /**
      * Randomize Button functionality. Uses a random number generator to fetch a string on the restos
      * arraylist and calls fetchImage to get the image from the xml file.
      */
     public void randomize() {
         ImageView mainImgView = (ImageView) findViewById(R.id.mainImage);
-        int i = (int) (Math.random() * (restos.size() - .01));
-        this.currentResto = restos.get(i);
-        mainImgView.setImageDrawable(fetchImage(this.currentResto));
+        int i = (int) (Math.random() * (getCheckedList().size() - .01));
+        this.currentResto = getCheckedList().get(i);
+        mainImgView.setImageDrawable(fetchImage(this.currentResto.getRestoName()));
     }
 
 
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addResto(String input) {
         Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
-        restos.add(input);
+        restos.add(new Restos(input,true));
     }
 
     /**
@@ -185,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
         if (this.restos.contains(this.currentResto)) {
             this.restos.remove(this.currentResto);
             Toast.makeText(this, "Resto has been deleted.", Toast.LENGTH_SHORT).show();
+            mAdapter.notifyDataSetChanged();
         } else {
             Toast.makeText(this, "Resto has already been removed.", Toast.LENGTH_SHORT).show();
         }
@@ -235,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.wendys_logo, null);
 
             default:
-                Toast.makeText(this, currentResto, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, currentResto.getRestoName(), Toast.LENGTH_SHORT).show();
                 return ResourcesCompat.getDrawable(getResources(), R.drawable.questionmark, null);
         }
     }
@@ -278,10 +281,6 @@ public class MainActivity extends AppCompatActivity {
         return (LinearLayout) findViewById(R.id.slider);
     }
 
-    public List<String> getRestos(){
-        return this.restos;
-    }
-
     /**
      * Getters for the app buttons.
      *
@@ -297,5 +296,25 @@ public class MainActivity extends AppCompatActivity {
 
     public ImageButton getDeleteButton() {
         return (ImageButton) findViewById(R.id.delete);
+    }
+
+    public ArrayList<Restos> getCheckedList(){
+        ArrayList<Restos> temp= new ArrayList<Restos>();
+        for(Restos r: restos){
+            if(r.getChecked()){
+                temp.add(r);
+            }
+        }
+        return temp;
+    }
+
+    @Override
+    public void onItemSelected(Restos clicked, boolean isChecked) {
+        if(isChecked){
+            clicked.setChecked(true);
+        }
+        if(!isChecked){
+           clicked.setChecked(false);
+        }
     }
 }

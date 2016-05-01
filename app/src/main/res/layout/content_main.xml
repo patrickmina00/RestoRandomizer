@@ -60,7 +60,7 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="false"
-        android:background="#c0bcbc"
+        android:background="#e100ccff"
         android:content="@+id/content"
         android:gravity="top|left|bottom|center_horizontal"
         android:orientation="vertical"
