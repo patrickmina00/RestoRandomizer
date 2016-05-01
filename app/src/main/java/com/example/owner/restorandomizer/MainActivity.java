@@ -143,72 +143,72 @@ public class MainActivity extends AppCompatActivity {
         animDown = AnimationUtils.loadAnimation(this, R.anim.moveleft);
     }
 
-    public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-            switch(view.getId()){
-                case R.id.mcheckBox:
-                    if(checked) selectedRestos.add("mcdonalds");
-                    else{
-                        for(String l : this.selectedRestos){
-                            if(l.equals("mcdonalds")){
-                                this.selectedRestos.remove(l);
-                            }
-                        }
-                    }
-                    break;
-                case R.id.ncheckBox:
-                    if(checked) selectedRestos.add("nandos");
-                    else{
-                        for(String l : this.selectedRestos){
-                            if(l.equals("nandos")){
-                                this.selectedRestos.remove(l);
-                            }
-                        }
-                    }
-                    break;
-                case R.id.bcheckBox:
-                    if(checked) selectedRestos.add("burgerking");
-                    else{
-                        for(String l : this.selectedRestos){
-                            if(l.equals("burgerking")){
-                                this.selectedRestos.remove(l);
-                            }
-                        }
-                    }
-                    break;
-                case R.id.kcheckBox:
-                    if(checked) selectedRestos.add("kfc");
-                    else{
-                        for(String l : this.selectedRestos){
-                            if(l.equals("kfc")){
-                                this.selectedRestos.remove(l);
-                            }
-                        }
-                    }
-                    break;
-                case R.id.bfcheckBox:
-                    if(checked) selectedRestos.add("burgerfuel");
-                    break;
-                case R.id.cpcheckBox:
-                    if(checked) selectedRestos.add("chefspalette");
-                    break;
-                case R.id.dcheckBox:
-                    if(checked) selectedRestos.add("dominos");
-                    break;
-                case R.id.hcheckBox:
-                    if(checked) selectedRestos.add("hells");
-                    break;
-                case R.id.phcheckBox:
-                    if(checked) selectedRestos.add("pizzahut");
-                    break;
-                case R.id.scheckBox:
-                    if(checked) selectedRestos.add("subway");
-                    break;
-                case R.id.wcheckBox:
-                    if(checked) selectedRestos.add("wendys");
-                    break;
-            }
-    }
+//    public void onCheckboxClicked(View view) {
+//        boolean checked = ((CheckBox) view).isChecked();
+//            switch(view.getId()){
+//                case R.id.mcheckBox:
+//                    if(checked) selectedRestos.add("mcdonalds");
+//                    else{
+//                        for(String l : this.selectedRestos){
+//                            if(l.equals("mcdonalds")){
+//                                this.selectedRestos.remove(l);
+//                            }
+//                        }
+//                    }
+//                    break;
+//                case R.id.ncheckBox:
+//                    if(checked) selectedRestos.add("nandos");
+//                    else{
+//                        for(String l : this.selectedRestos){
+//                            if(l.equals("nandos")){
+//                                this.selectedRestos.remove(l);
+//                            }
+//                        }
+//                    }
+//                    break;
+//                case R.id.bcheckBox:
+//                    if(checked) selectedRestos.add("burgerking");
+//                    else{
+//                        for(String l : this.selectedRestos){
+//                            if(l.equals("burgerking")){
+//                                this.selectedRestos.remove(l);
+//                            }
+//                        }
+//                    }
+//                    break;
+//                case R.id.kcheckBox:
+//                    if(checked) selectedRestos.add("kfc");
+//                    else{
+//                        for(String l : this.selectedRestos){
+//                            if(l.equals("kfc")){
+//                                this.selectedRestos.remove(l);
+//                            }
+//                        }
+//                    }
+//                    break;
+//                case R.id.bfcheckBox:
+//                    if(checked) selectedRestos.add("burgerfuel");
+//                    break;
+//                case R.id.cpcheckBox:
+//                    if(checked) selectedRestos.add("chefspalette");
+//                    break;
+//                case R.id.dcheckBox:
+//                    if(checked) selectedRestos.add("dominos");
+//                    break;
+//                case R.id.hcheckBox:
+//                    if(checked) selectedRestos.add("hells");
+//                    break;
+//                case R.id.phcheckBox:
+//                    if(checked) selectedRestos.add("pizzahut");
+//                    break;
+//                case R.id.scheckBox:
+//                    if(checked) selectedRestos.add("subway");
+//                    break;
+//                case R.id.wcheckBox:
+//                    if(checked) selectedRestos.add("wendys");
+//                    break;
+//            }
+//    }
 
 
     @Override
