@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSelectedListner {
@@ -175,8 +176,26 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
      * resto list and towards the randomizer choices.
      */
     public void addResto(String input) {
-        Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
-        restos.add(new Restos(input,true));
+        if(input==null || input.equals(" ") || input.equals("")){
+            Toast.makeText(this, "Invalid Resto Name", Toast.LENGTH_SHORT).show();
+        }
+        else if(checkDuplicates(input)){
+            Toast.makeText(this, "Resto already exists", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
+            restos.add(new Restos(input,true));
+        }
+
+    }
+
+    public boolean checkDuplicates(String input){
+        for(Restos r: restos){
+            if(r.getRestoName().toLowerCase().equals(input.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
