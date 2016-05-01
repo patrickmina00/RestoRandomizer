@@ -18,7 +18,11 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+
+import android.widget.CheckBox;
+
 import android.widget.EditText;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,10 +33,12 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 
+
 public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSelectedListner {
     private List<Restos> restos = new ArrayList<Restos>();
     //  private List<Restos> selected = new ArrayList<Restos>();
     private Restos currentResto;
+
     private final Context context = this;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
         ImageButton addButton = getAddButton();
         ImageButton deleteButton = getDeleteButton();
 
-        //Assigning listeners to buttons.
+        //Assigning listeners to buttons and checkbox.
         randomizeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MainActivity.this.randomize();
@@ -166,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
         int i = (int) (Math.random() * (getCheckedList().size() - .01));
         this.currentResto = getCheckedList().get(i);
         mainImgView.setImageDrawable(fetchImage(this.currentResto.getRestoName()));
+
     }
 
 
@@ -192,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
      * @return
      */
     public boolean checkDuplicates(String input) {
-
         for (Restos r : restos) {
             if (r.getRestoName().toLowerCase().equals(input.toLowerCase())) {
                 return true;
@@ -214,7 +220,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
             Toast.makeText(this, "Resto has already been removed.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     /**
      * Uses a switch to return the image for a given restaurant string from android resources.
@@ -305,7 +310,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
 
     /**
      * Getters for the app buttons.
-     *
      * @return
      */
     public Button getRandomizeButton() {
