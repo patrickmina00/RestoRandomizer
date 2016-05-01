@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.owner.restorandomizer.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background = "@drawable/wallpaper4">
 
     <ImageView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/resto_randomizer"
+
+        android:src="@drawable/resto_randomizer"
         android:paddingLeft="18dp"
         android:paddingRight="18dp"
         android:textSize="24sp" />
@@ -60,35 +62,24 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="false"
-<<<<<<< HEAD
-        android:background="#e100ccff"
-=======
-        android:background="#e2d92629"
->>>>>>> master
+        android:background="#e2ce710b"
         android:content="@+id/content"
         android:gravity="top|left|bottom|center_horizontal"
         android:orientation="vertical"
         android:weightSum="1">
 
         <android.support.v7.widget.RecyclerView
-<<<<<<< HEAD
             android:id = "@+id/my_recycler_view"
             android:scrollbars = "vertical"
             android:layout_width = "match_parent"
             android:layout_height = "match_parent"
             />
-=======
-            android:id="@+id/my_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
 
->>>>>>> master
     </LinearLayout>
 
     <ImageView
         android:id="@+id/mainImage"
-        android:background="@drawable/wallpaper"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/addbinButton"
