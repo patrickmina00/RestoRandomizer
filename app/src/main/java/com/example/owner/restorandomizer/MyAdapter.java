@@ -15,46 +15,47 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<Restos> dataset;
     private ItemSelectedListner listner;
 
-    interface ItemSelectedListner{
+    interface ItemSelectedListner {
         void onItemSelected(Restos clicked, boolean isChecked);
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public CheckBox mCheckBox;
 
-        public ViewHolder(CheckBox v){
+        public ViewHolder(CheckBox v) {
             super(v);
             mCheckBox = v;
         }
     }
 
-    public MyAdapter(List<Restos> dataset, ItemSelectedListner listner){
+    public MyAdapter(List<Restos> dataset, ItemSelectedListner listner) {
         this.dataset = dataset;
         this.listner = listner;
     }
 
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        CheckBox v =(CheckBox) LayoutInflater.from(parent.getContext()).inflate(R.layout.row_check_box, parent, false);
+        CheckBox v = (CheckBox) LayoutInflater.from(parent.getContext()).inflate(R.layout.row_check_box, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
 
-    public void onBindViewHolder(final ViewHolder holder, final int position){
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mCheckBox.setText(dataset.get(position).getRestoName());
         holder.mCheckBox.setChecked(dataset.get(position).getChecked());
         holder.mCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listner.onItemSelected(dataset.get(position),holder.mCheckBox.isChecked());
+                listner.onItemSelected(dataset.get(position), holder.mCheckBox.isChecked());
             }
 
         });
     }
 
-    public int getItemCount(){
+    public int getItemCount() {
         return dataset.size();
     }
 }

@@ -31,7 +31,7 @@ import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSelectedListner {
     private List<Restos> restos = new ArrayList<Restos>();
-//  private List<Restos> selected = new ArrayList<Restos>();
+    //  private List<Restos> selected = new ArrayList<Restos>();
     private Restos currentResto;
     private final Context context = this;
     private RecyclerView mRecyclerView;
@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MyAdapter(this.restos, this);
         mRecyclerView.setAdapter(mAdapter);
-
-
 
 
         //Adding Buttons in
@@ -119,19 +117,19 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
         });
 
         //Adding our default restaurants for app.
-        restos.add(new Restos("dominos",true));
-        restos.add(new Restos("pizzahut",true));
-        restos.add(new Restos("nandos",true));
-        restos.add(new Restos("burgerking",true));
-        restos.add(new Restos("mcdonalds",true));
-        restos.add(new Restos("default",true));
-        restos.add(new Restos("burgerfuel",true));
-        restos.add(new Restos("chefspalette",true));
-        restos.add(new Restos("hells",true));
-        restos.add(new Restos("kfc",true));
-        restos.add(new Restos("subway",true));
-        restos.add(new Restos("wendys",true));
-        restos.add(new Restos("heyramen",true));
+        restos.add(new Restos("dominos", true));
+        restos.add(new Restos("pizzahut", true));
+        restos.add(new Restos("nandos", true));
+        restos.add(new Restos("burgerking", true));
+        restos.add(new Restos("mcdonalds", true));
+        restos.add(new Restos("default", true));
+        restos.add(new Restos("burgerfuel", true));
+        restos.add(new Restos("chefspalette", true));
+        restos.add(new Restos("hells", true));
+        restos.add(new Restos("kfc", true));
+        restos.add(new Restos("subway", true));
+        restos.add(new Restos("wendys", true));
+        restos.add(new Restos("heyramen", true));
 
         getLin().setVisibility(View.GONE);
         animUp = AnimationUtils.loadAnimation(this, R.anim.moveright);
@@ -176,22 +174,27 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
      * resto list and towards the randomizer choices.
      */
     public void addResto(String input) {
-        if(input==null || input.equals(" ") || input.equals("")){
+        if (input == null || input.equals(" ") || input.equals("")) {
             Toast.makeText(this, "Invalid Resto Name", Toast.LENGTH_SHORT).show();
-        }
-        else if(checkDuplicates(input)){
+        } else if (checkDuplicates(input)) {
             Toast.makeText(this, "Resto already exists", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(this, "Resto Added!", Toast.LENGTH_SHORT).show();
-            restos.add(new Restos(input,true));
+            restos.add(new Restos(input, true));
         }
 
     }
 
-    public boolean checkDuplicates(String input){
-        for(Restos r: restos){
-            if(r.getRestoName().toLowerCase().equals(input.toLowerCase())){
+    /****
+     * Checks for duplicates for all inputs
+     *
+     * @param input
+     * @return
+     */
+    public boolean checkDuplicates(String input) {
+
+        for (Restos r : restos) {
+            if (r.getRestoName().toLowerCase().equals(input.toLowerCase())) {
                 return true;
             }
         }
@@ -317,10 +320,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
         return (ImageButton) findViewById(R.id.delete);
     }
 
-    public ArrayList<Restos> getCheckedList(){
-        ArrayList<Restos> temp= new ArrayList<Restos>();
-        for(Restos r: restos){
-            if(r.getChecked()){
+    public ArrayList<Restos> getCheckedList() {
+        ArrayList<Restos> temp = new ArrayList<Restos>();
+        for (Restos r : restos) {
+            if (r.getChecked()) {
                 temp.add(r);
             }
         }
@@ -329,11 +332,11 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemSel
 
     @Override
     public void onItemSelected(Restos clicked, boolean isChecked) {
-        if(isChecked){
+        if (isChecked) {
             clicked.setChecked(true);
         }
-        if(!isChecked){
-           clicked.setChecked(false);
+        if (!isChecked) {
+            clicked.setChecked(false);
         }
     }
 }

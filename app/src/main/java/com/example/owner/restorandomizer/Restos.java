@@ -12,15 +12,15 @@ public class Restos {
         this.resto = resto;
     }
 
-    public boolean getChecked(){
+    public boolean getChecked() {
         return this.isChecked;
     }
 
-    public void setChecked(boolean b){
-        this.isChecked=b;
+    public void setChecked(boolean b) {
+        this.isChecked = b;
     }
 
-    public String getRestoName(){
+    public String getRestoName() {
         return this.resto;
     }
 
