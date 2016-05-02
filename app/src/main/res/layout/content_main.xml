@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.owner.restorandomizer.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background = "@drawable/wallpaper4">
 
     <ImageView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/resto_randomizer"
+        android:background="#6b6cd2ec"
+        android:src="@drawable/resto_randomizer"
         android:paddingLeft="18dp"
         android:paddingRight="18dp"
         android:textSize="24sp" />
@@ -22,7 +24,8 @@
         android:id="@+id/addbinButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="#6b6cd2ec">
 
         <ImageButton
             android:id="@+id/add"
@@ -60,42 +63,19 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="false"
-        android:background="#c0bcbc"
+        android:background="#e2f29733"
         android:content="@+id/content"
         android:gravity="top|left|bottom|center_horizontal"
         android:orientation="vertical"
         android:weightSum="1">
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="McDonalds" />
+        <android.support.v7.widget.RecyclerView
+            android:id = "@+id/my_recycler_view"
+            android:scrollbars = "vertical"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            />
 
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox" />
-
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox" />
-
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox" />
-
-        <CheckBox
-            android:id="@+id/checkBox5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox" />
     </LinearLayout>
 
     <ImageView
@@ -105,5 +85,15 @@
         android:layout_above="@id/addbinButton"
         android:layout_below="@id/header"
         android:src="@drawable/questionmark" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000000"
+        android:layout_above="@id/mainImage" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000000"
+        android:layout_below="@id/mainImage" />
 
 </RelativeLayout>
